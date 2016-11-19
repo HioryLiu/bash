@@ -1,0 +1,13 @@
+apiVersion: 1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30001 # 30000 ~ 32767
+  selector:
+    name: frontend

@@ -1,20 +1,26 @@
 apiVersion: v1
-kind: ReplicationController
+kind: ReplicationController # this is a RC
 metadata:
   name: redis-master
   labels:
     name: redis-master
 spec:
   replicas: 1
-  selector:
+  selector:  # RC's Pod selector 监控和管理拥有这些标签的Pod实例
     name: redis-master
-  template:
+  template: # 定义Pod 模板
     metadata:
-      labels:
-        name:redis-master
+      labels: # 该Pod的标签
+        name:redis-master # 这里的标签必须匹配 RC的selector
     spec:
       containers:
         - name:master
           image:kubeguide/redis-master
           ports:
           - containerPort: 6379
+
+#  发布
+#  kuberctl create -f <config_file>
+#  查看
+#  kuberctl get rc
+#  kuberctl get pods

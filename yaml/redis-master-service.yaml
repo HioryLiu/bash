@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master # service 的服务名(ServiceName)
+  labels:
+    name: redis-master
+spec:
+  ports:
+    - port: 6379 # Service的虚端口
+      targetPort: 6379 # 提供该服务的容器所暴露的端口
+    selector: # spec.selector确定了哪些Pod对应到本服务
+      name:redis-master # 拥有redis-master标签的pod属于redis-master 服务
+
+
+# 创建Service的方法
+# kubectl create -f redis-master-service.yaml
+# 查看方法
+# kubectl get services
